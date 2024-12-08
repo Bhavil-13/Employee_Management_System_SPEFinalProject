@@ -1,6 +1,6 @@
-kubectl apply -f mongodb-deployment.yaml
-kubectl apply -f frontend-deployment.yaml
-kubectl apply -f backend-deployment.yaml
+kubectl apply -f mongodb.yaml
+kubectl apply -f frontend.yaml
+kubectl apply -f backend.yaml
 
 
 minikube service frontend
@@ -8,3 +8,11 @@ minikube service frontend
 kubectl delete deployment mongodb
 kubectl delete deployment backend
 kubectl delete deployment frontend
+
+
+
+docker tag employee_management_system_spefinalproject-backend:latest bhavil13/ems-spe_fp-backend:latest
+docker push bhavil13/ems-spe_fp-backend:latest
+
+docker tag employee_management_system_spefinalproject-frontend:latest bhavil13/ems-spe_fp-frontend:latest
+docker push bhavil13/ems-spe_fp-frontend:latest

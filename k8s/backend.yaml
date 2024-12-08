@@ -1,4 +1,3 @@
-# backend-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,22 +14,21 @@ spec:
     spec:
       containers:
       - name: backend
-        image: bhavil13/ems-spe_fp-backend:latest
+        image: bhavil13/ems-spe_fp-backend
         ports:
         - containerPort: 5050
         env:
         - name: MONGO_URI
-          value: mongodb://mongodb:27017/mydatabase
+          value: mongodb://mongodb-service:27017/mydatabase
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: backend-service
 spec:
-  type: NodePort
-  ports:
-  - port: 5050
-    targetPort: 5050
-    nodePort: 30050
   selector:
     app: backend
+  ports:
+    - protocol: TCP
+      port: 5050
+      targetPort: 5050

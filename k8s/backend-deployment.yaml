@@ -1,0 +1,36 @@
+# backend-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: bhavil13/ems-spe_fp-backend:latest
+        ports:
+        - containerPort: 5050
+        env:
+        - name: MONGO_URI
+          value: mongodb://mongodb:27017/mydatabase
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  type: NodePort
+  ports:
+  - port: 5050
+    targetPort: 5050
+    nodePort: 30050
+  selector:
+    app: backend

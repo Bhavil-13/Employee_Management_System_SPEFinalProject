@@ -1,0 +1,10 @@
+kubectl apply -f mongodb-deployment.yaml
+kubectl apply -f frontend-deployment.yaml
+kubectl apply -f backend-deployment.yaml
+
+
+minikube service frontend
+
+kubectl delete deployment mongodb
+kubectl delete deployment backend
+kubectl delete deployment frontend

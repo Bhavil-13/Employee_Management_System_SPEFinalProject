@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+// const API_URL = process.env.REACT_APP_API_URL;
+// console.log("HIIIIIIIIIIIIIIIIIIIIIIII")
+// console.log(API_URL)
+
 export default function Record() {
   const [form, setForm] = useState({
     name: "",

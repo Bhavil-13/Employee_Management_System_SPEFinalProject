@@ -1,7 +1,51 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: backend
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: backend
+#   template:
+#     metadata:
+#       labels:
+#         app: backend
+#     spec:
+#       containers:
+#       - name: backend
+#         image: bhavil13/ems-spe_fp-backend
+#         ports:
+#         - containerPort: 5050
+#         env:
+#         - name: MONGO_URI
+#           value: mongodb://mongodb-service:27017/mydatabase
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: backend-service
+# spec:
+#   selector:
+#     app: backend
+#   ports:
+#     - protocol: TCP
+#       port: 5050
+#       targetPort: 5050
+
+
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mern-stack
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
+  namespace: mern-stack
 spec:
   replicas: 1
   selector:
@@ -13,22 +57,21 @@ spec:
         app: backend
     spec:
       containers:
-      - name: backend
-        image: bhavil13/ems-spe_fp-backend
-        ports:
-        - containerPort: 5050
-        env:
-        - name: MONGO_URI
-          value: mongodb://mongodb-service:27017/mydatabase
+        - name: backend
+          image: bhavil13/ems-spe_fp-backend
+          ports:
+            - containerPort: 5050
+          env:
+            - name: MONGO_URI
+              value: mongodb://mongodb:27017/mydatabase
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
+  name: backend
+  namespace: mern-stack
 spec:
+  ports:
+    - port: 5050
   selector:
     app: backend
-  ports:
-    - protocol: TCP
-      port: 5050
-      targetPort: 5050

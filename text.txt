@@ -1,14 +1,29 @@
-kubectl apply -f mongodb.yaml
-kubectl apply -f frontend.yaml
+minikube start
+
 kubectl apply -f backend.yaml
+kubectl apply -f elasticsearch.yaml
+kubectl apply -f frontend.yaml
+kubectl apply -f kibana.yaml
+kubectl apply -f logstash.yaml
+kubectl apply -f mongodb.yaml
 
 
 minikube service frontend
+
+kubectl delete all --all -n mern-stack
+kubectl delete all --all
 
 kubectl delete deployment mongodb
 kubectl delete deployment backend
 kubectl delete deployment frontend
 
+
+kubectl exec -it <elasticsearch-pod-name> -n mern-stack -- /bin/bash
+
+
+chown elasticsearch:elasticsearch /usr/share/elasticsearch/config/users
+chown elasticsearch:elasticsearch /usr/share/elasticsearch/config/users_roles
+bin/elasticsearch-create-enrollment-token --scope kibana
 
 
 docker tag employee_management_system_spefinalproject-backend:latest bhavil13/ems-spe_fp-backend:latest
@@ -16,3 +31,35 @@ docker push bhavil13/ems-spe_fp-backend:latest
 
 docker tag employee_management_system_spefinalproject-frontend:latest bhavil13/ems-spe_fp-frontend:latest
 docker push bhavil13/ems-spe_fp-frontend:latest
+
+
+docker volume rm $(docker volume ls -q)
+docker rmi $(docker images -q)
+
+
+
+sudo lsof -i :5050
+sudo lsof -i :5173
+sudo lsof -i :27017
+sudo lsof -i :9200
+sudo lsof -i :9300
+sudo lsof -i :5044
+sudo lsof -i :5601
+sudo kill -9 <PID>
+
+https://docs.google.com/document/d/12w_pE_iotMQcqjsJedSXMF_L1cj4YsT-bDIm3mBbkR4/edit?tab=t.0#heading=h.vydniszftb1n
+
+https://nikhil0360.notion.site/CS-816-Software-Production-Engineering-427950162e58491d9c95a1656733a126
+
+
+
+
+
+
+
+
+
+
+
+
+

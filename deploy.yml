@@ -23,56 +23,56 @@
   tasks:
     - name: Delete any existing mongo deployment
       kubernetes.core.k8s:
-        src: ./k8s/mongodb.yaml
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/mongodb.yaml
         state: absent
         namespace: mern-app
     - name: Create a deployment for mongo
       kubernetes.core.k8s:
-        src: ./k8s/mongodb.yaml
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/mongodb.yaml
         state: present
         apply: true
         namespace: mern-app
     - name: Delete any existing deployment of Backend Deployment
       kubernetes.core.k8s:
-        src: ./k8s/backend.yaml
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/backend.yaml
         state: absent
         namespace: mern-app
     - name: Create a deployment for Blacklist Service
       kubernetes.core.k8s:
-        src: ./k8s/backend.yaml
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/backend.yaml
         state: present
         apply: true
         namespace: mern-app
     - name: Delete any existing deployment of Frontend Deployment
       kubernetes.core.k8s:
-        src: ./k8s/frontend.yaml
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/frontend.yaml
         state: absent
         namespace: mern-app
     - name: Create a deployment for Frontend Service
       kubernetes.core.k8s:
-        src: ./k8s/frontend.yaml
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/frontend.yaml
         state: present
         apply: true
         namespace: mern-app
     # - name: Delete any existing deployment of Filebeat
     #   kubernetes.core.k8s:
-    #     src: ./k8s/file-beat-config.yaml
+    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/file-beat-config.yaml
     #     state: absent
     #     namespace: mern-app
     # - name: Create a deployment for Filebeat
     #   kubernetes.core.k8s:
-    #     src: ./k8s/file-beat-config.yaml
+    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/file-beat-config.yaml
     #     state: present
     #     apply: true
     #     namespace: mern-app
     # - name: Delete any existing deployment of Logstash
     #   kubernetes.core.k8s:
-    #     src: ./k8s/logstash.yaml
+    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/logstash.yaml
     #     state: absent
     #     namespace: mern-app
     # - name: Create a deployment for Logstash
     #   kubernetes.core.k8s:
-    #     src: ./k8s/logstash.yaml
+    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/logstash.yaml
     #     state: present
     #     apply: true
     #     namespace: mern-app

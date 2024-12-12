@@ -71,9 +71,15 @@ pipeline{
             steps {
                 echo 'Deploying locally..'
 
-                withPythonEnv('python3') {
-                    sh 'pip3 install ansible'
-                    sh 'ansible-playbook playbook.yml -i inventory'
+                steps{
+                    ansiblePlaybook becomeUser: null,
+                    colorized: true,
+                    credentialsId: 'localhost',
+                    disableHostKeyChecking: true,
+                    installation: 'Ansible',
+                    inventory: './inventory',
+                    playbook: './deploy.yml',
+                    sudoUser: null
                 }
 
                 echo 'Done Deploying'

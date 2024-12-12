@@ -13,6 +13,10 @@
       command: python3 -m venv ./ /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/.venv
       args:
         creates: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/.venv
+    - name: Deploy with Ansible
+      hosts: localhost
+      vars:
+        ansible_python_interpreter: "/home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/.venv/bin/python"
     - name: "Install kubernetes python package"
       pip:
         name: kubernetes

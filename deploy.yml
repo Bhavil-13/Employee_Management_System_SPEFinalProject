@@ -16,7 +16,7 @@
     - name: "Install kubernetes python package"
       pip:
         name: kubernetes
-        virtualenv: ./.venv
+        virtualenv: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/.venv
         state: present
   tasks:
     - name: Delete any existing mongo deployment

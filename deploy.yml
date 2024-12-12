@@ -1,5 +1,7 @@
 - name: pull updated image
   hosts: all
+  vars:
+    ansible_python_interpreter: "/home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/.venv/bin/python"
   pre_tasks:
     - name: Check Minikube's status.
       command: minikube status
@@ -12,11 +14,7 @@
     - name: "Create a Python virtual environment"
       command: python3 -m venv ./ /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/.venv
       args:
-        creates: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/.venv
-    - name: Deploy with Ansible
-      hosts: localhost
-      vars:
-        ansible_python_interpreter: "/home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/.venv/bin/python"
+        creates: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/.venv      
     - name: "Install kubernetes python package"
       pip:
         name: kubernetes

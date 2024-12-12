@@ -14,6 +14,7 @@ pipeline{
             steps{
                 git branch: 'kubernetes',
                 url:'https://github.com/Bhavil-13/Employee_Management_System_SPEFinalProject.git'
+                echo 'Clone done'
             }
         }
 		stage('build') {
@@ -22,6 +23,7 @@ pipeline{
 				sh 'cd backend && npm -f install'
                 sh 'cd frontend && npm -f install'
                 sh 'cd frontend && npm run build'
+                echo 'Build Done==============================='
 			}
 		}
 
@@ -43,9 +45,10 @@ pipeline{
         stage('Build and Push Docker Image - frontend') {
             steps {
                 script{
+                    echo 'Starting to push'
                     def dockerfileDir = "./frontend"
                     dockerImage = docker.build(frontend + ":latest", "--file ${dockerfileDir}/Dockerfile ${dockerfileDir}")
-                    docker.withRegistry('', registryCredential) {
+                    docker.withRegistry('', 'DockerHub_ID') {
                         dockerImage.push()
                     }
                 }

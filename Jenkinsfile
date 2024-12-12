@@ -71,16 +71,14 @@ pipeline{
             steps {
                 echo 'Deploying locally..'
 
-                steps{
-                    ansiblePlaybook becomeUser: null,
-                    colorized: true,
-                    credentialsId: 'localhost',
-                    disableHostKeyChecking: true,
-                    installation: 'Ansible',
-                    inventory: './inventory',
-                    playbook: './deploy.yml',
-                    sudoUser: null
-                }
+                ansiblePlaybook becomeUser: null,
+                colorized: true,
+                credentialsId: 'localhost',
+                disableHostKeyChecking: true,
+                installation: 'Ansible',
+                inventory: './inventory',
+                playbook: './deploy.yml',
+                sudoUser: null
 
                 echo 'Done Deploying'
             }

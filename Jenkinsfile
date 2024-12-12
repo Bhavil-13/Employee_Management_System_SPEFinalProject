@@ -60,7 +60,7 @@ pipeline{
                 script{
                     def dockerfileDir = "./backend"
                     dockerImage = docker.build(backend + ":latest", "--file ${dockerfileDir}/Dockerfile ${dockerfileDir}")
-                    docker.withRegistry('', registryCredential) {
+                    docker.withRegistry('', 'DockerHub_ID') {
                         dockerImage.push()
                     }
                 }

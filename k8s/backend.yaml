@@ -70,6 +70,8 @@ metadata:
   name: backend
 spec:
   ports:
-    - port: 5050
+  - protocol: TCP
+    port: 5050
+    targetPort: 5050
   selector:
     app: backend

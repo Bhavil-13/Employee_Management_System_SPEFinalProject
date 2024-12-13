@@ -91,6 +91,8 @@ spec:
               value: "-Xms1g -Xmx1g"
             - name: xpack.security.enrollment.enabled
               value: "false"  # Enable enrollment for Kibana
+            - name: xpack.security.enabled
+              value: "false" 
           volumeMounts:
             - name: es-data
               mountPath: /usr/share/elasticsearch/data

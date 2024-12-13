@@ -18,6 +18,7 @@ kubectl delete deployment backend
 kubectl delete deployment frontend
 
 
+
 kubectl exec -it <elasticsearch-pod-name> -n mern-stack -- /bin/bash
 
 

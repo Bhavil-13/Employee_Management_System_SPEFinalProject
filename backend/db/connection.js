@@ -2,6 +2,8 @@ import { MongoClient, ServerApiVersion } from "mongodb";
 
 // const URI = "mongodb://mongodb:27017";
 const MONGO_URI = process.env.MONGO_URI
+console.log("The mongo_URI from env is: ")
+console.log(MONGO_URI)
 const client = new MongoClient(/*URI*/MONGO_URI, {
   serverApi: {
     version: ServerApiVersion.v1,

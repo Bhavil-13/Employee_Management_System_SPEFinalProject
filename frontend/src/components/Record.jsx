@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 // const API_URL = process.env.REACT_APP_API_URL;
-API_URL = "http://backend:5050"
+const API_URL = "http://backend:5050"
 console.log("HIIIIIIIIIIIIIIIIIIIIIIII")
 // console.log(API_URL)
 

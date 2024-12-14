@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mern-app
+  namespace: default
+spec:
+  containers:
+    - name: mongodb
+      image: mongo:latest
+      ports:
+        - containerPort: 27017
+      volumeMounts:
+        - name: mongo-data
+          mountPath: /data/db
+    - name: backend
+      image: bhavil13/ems-spe_fp-backend  # Use the built image from your registry
+      ports:
+        - containerPort: 5050
+      env:
+        - name: MONGO_URI
+          value: "mongodb://localhost:27017"  # MongoDB is available on localhost in the pod
+    - name: frontend
+      image: bhavil13/ems-spe_fp-frontend  # Use the built image from your registry
+      ports:
+        - containerPort: 5173
+      env:
+        - name: VITE_API_URL
+          value: "http://localhost:5050"  # Backend API URL
+
+  volumes:
+    - name: mongo-data
+      emptyDir: {}  # Use emptyDir for ephemeral storage

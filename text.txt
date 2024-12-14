@@ -58,3 +58,6 @@ kubectl port-forward -n mern-stack service/frontend 5173:5173
 kubectl scale deployment frontend --replicas=2
 kubectl delete hpa frontend-hpa
 kubectl get hpa
+
+
+

@@ -34,13 +34,6 @@
 #       targetPort: 5050
 
 
-
-# apiVersion: v1
-# kind: Namespace
-# metadata:
-#   name: mern-stack
-# ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:

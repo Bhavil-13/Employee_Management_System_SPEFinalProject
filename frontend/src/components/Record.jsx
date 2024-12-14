@@ -3,9 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-console.log("Skibbidi dom dom dom")
-console.log(import.meta.env.VITE_API_URL);
-console.log("yes yes")
+// console.log("Skibbidi dom dom dom")
+// console.log(import.meta.env.VITE_API_URL);
+// console.log("yes yes")
 
 export default function Record() {
   const [form, setForm] = useState({
@@ -57,7 +57,7 @@ export default function Record() {
       let response;
       if (isNew) {
         // if we are adding a new record we will POST to /record.
-        response = await fetch("${API_URL}/record", {
+        response = await fetch(`${API_URL}/record`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

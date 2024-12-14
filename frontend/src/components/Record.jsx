@@ -6,6 +6,10 @@ import { useParams, useNavigate } from "react-router-dom";
 // console.log("HIIIIIIIIIIIIIIIIIIIIIIII")
 // console.log(API_URL)
 
+console.log("Skibbidi dom dom dom")
+console.log(import.meta.env.VITE_API_URL);
+console.log("yes yes")
+
 export default function Record() {
   const [form, setForm] = useState({
     name: "",

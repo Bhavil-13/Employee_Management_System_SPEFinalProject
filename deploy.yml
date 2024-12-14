@@ -67,25 +67,49 @@
         state: present
         apply: true
         namespace: default
-    # - name: Delete any existing deployment of Filebeat
+
+    # - name: Delete any existing deployment of Frontend HPA Deployment
     #   kubernetes.core.k8s:
-    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/file-beat-config.yaml
+    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/frontend-hpa.yaml
     #     state: absent
     #     namespace: default
-    # - name: Create a deployment for Filebeat
+    # - name: Create a deployment for Frontend HPA Service
     #   kubernetes.core.k8s:
-    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/file-beat-config.yaml
+    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/frontend-hpa.yaml
     #     state: present
     #     apply: true
     #     namespace: default
-    # - name: Delete any existing deployment of Logstash
-    #   kubernetes.core.k8s:
-    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/logstash.yaml
-    #     state: absent
-    #     namespace: default
-    # - name: Create a deployment for Logstash
-    #   kubernetes.core.k8s:
-    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/logstash.yaml
-    #     state: present
-    #     apply: true
-    #     namespace: default
+
+    - name: Delete any existing deployment of Elastic
+      kubernetes.core.k8s:
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/elasticsearch.yaml
+        state: absent
+        namespace: default
+    - name: Create a deployment for Elastic
+      kubernetes.core.k8s:
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/elasticsearch.yaml
+        state: present
+        apply: true
+        namespace: default
+    - name: Delete any existing deployment of Logstash
+      kubernetes.core.k8s:
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/logstash.yaml
+        state: absent
+        namespace: default
+    - name: Create a deployment for Logstash
+      kubernetes.core.k8s:
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/logstash.yaml
+        state: present
+        apply: true
+        namespace: default
+    - name: Delete any existing deployment of Kibana
+      kubernetes.core.k8s:
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/kibana.yaml
+        state: absent
+        namespace: default
+    - name: Create a deployment for Kibana
+      kubernetes.core.k8s:
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/kibana.yaml
+        state: present
+        apply: true
+        namespace: default

@@ -51,7 +51,7 @@ spec:
           ports:
             - containerPort: 5173
           env:
-            - name: REACT_APP_API_URL
+            - name: VITE_API_URL
               value: http://backend:5050
           # resources:
           #   requests:

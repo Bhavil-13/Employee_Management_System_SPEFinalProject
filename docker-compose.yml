@@ -62,7 +62,7 @@ services:
     networks:
       - mern_network
     environment:
-      REACT_APP_API_URL: http://backend:5050 
+      VITE_API_URL: http://locahlost:5050 
 
   mongodb:
     image: mongo:latest  
@@ -113,6 +113,22 @@ services:
       - mern_network
     depends_on:
       - elasticsearch
+  
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.10.2
+    container_name: filebeat
+    user: root
+    volumes:
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      # - /var/log:/var/log:ro
+      - ./backend/var/log/myapp:/var/log/myapp:ro
+    environment:
+      - ELASTICSEARCH_HOST=elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      - mern_network
+    command: filebeat -e -system.config.filebeat.yml
 
 networks:
   mern_network:

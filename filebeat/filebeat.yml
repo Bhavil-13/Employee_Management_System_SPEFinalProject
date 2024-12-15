@@ -1,0 +1,8 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/myapp/*.log  # Path to the backend logs in the container
+
+output.elasticsearch:
+  hosts: ["http://localhost:9200"]

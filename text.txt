@@ -50,6 +50,7 @@ sudo kill -9 <PID>
 https://docs.google.com/document/d/12w_pE_iotMQcqjsJedSXMF_L1cj4YsT-bDIm3mBbkR4/edit?tab=t.0#heading=h.vydniszftb1n
 
 
+https://www.youtube.com/watch?v=5cNrTU6o3Fw
 
 
 
@@ -59,4 +60,4 @@ https://docs.google.com/document/d/12w_pE_iotMQcqjsJedSXMF_L1cj4YsT-bDIm3mBbkR4/
 
 
 
-
+xpack.monitoring.collection.enabled

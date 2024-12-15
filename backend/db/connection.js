@@ -26,7 +26,7 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 import logger from "./logger";  // Import the logger from the same db folder
 
-const URI = "mongodb://mongodb:27017";
+const URI = "mongodb://mongodb:27017/";
 const client = new MongoClient(URI, {
   serverApi: {
     version: ServerApiVersion.v1,

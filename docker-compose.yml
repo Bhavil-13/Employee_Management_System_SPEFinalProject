@@ -50,7 +50,7 @@ services:
     networks:
       - mern_network
     environment:
-      MONGO_URI: mongodb://mongo:27017/mydatabase  
+      MONGO_URI: mongodb://mongo:27017/  
     depends_on:
       - mongodb
       - elasticsearch  # Add Elasticsearch dependency for logging/search integration if needed
@@ -62,7 +62,7 @@ services:
     networks:
       - mern_network
     environment:
-      VITE_API_URL: http://locahlost:5050 
+      VITE_API_URL: http://backend:5050 
 
   mongodb:
     image: mongo:latest  

@@ -21,52 +21,52 @@
         virtualenv: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/.venv
         state: present
   tasks:
-    - name: Delete any existing mongo deployment
-      kubernetes.core.k8s:
-        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/mongodb.yaml
-        state: absent
-        namespace: default
-    - name: Create a deployment for mongo
-      kubernetes.core.k8s:
-        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/mongodb.yaml
-        state: present
-        apply: true
-        namespace: default
-    
+    # - name: Delete any existing mongo deployment
+    #   kubernetes.core.k8s:
+    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/mongodb.yaml
+    #     state: absent
+    #     namespace: default
+    # - name: Create a deployment for mongo
+    #   kubernetes.core.k8s:
+    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/mongodb.yaml
+    #     state: present
+    #     apply: true
+    #     namespace: default
+    # ======================================================================
     # - name: Wait for namespace to be active
     #   command: kubectl get namespace default -o jsonpath='{.status.phase}'
     #   register: namespace_status
     #   until: namespace_status.stdout == "Active"
     #   retries: 10
     #   delay: 5
-
+# ====================================================================
     
 
-    - name: Wait for MongoDB service to be ready
-      command: kubectl wait --for=condition=available --timeout=60s deployment/mongodb -n default
+    # - name: Wait for MongoDB service to be ready
+    #   command: kubectl wait --for=condition=available --timeout=60s deployment/mongodb -n default
 
-    - name: Delete any existing deployment of Backend Deployment
-      kubernetes.core.k8s:
-        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/backend.yaml
-        state: absent
-        namespace: default
-    - name: Create a deployment for Backend Service
-      kubernetes.core.k8s:
-        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/backend.yaml
-        state: present
-        apply: true
-        namespace: default
-    # - name: Delete any existing deployment of Frontend Deployment
+    # - name: Delete any existing deployment of Backend Deployment
     #   kubernetes.core.k8s:
-    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/frontend.yaml
+    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/backend.yaml
     #     state: absent
     #     namespace: default
-    # - name: Create a deployment for Frontend Service
+    # - name: Create a deployment for Backend Service
     #   kubernetes.core.k8s:
-    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/frontend.yaml
+    #     src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/backend.yaml
     #     state: present
     #     apply: true
     #     namespace: default
+    - name: Delete any existing deployment of Frontend Deployment
+      kubernetes.core.k8s:
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/frontend.yaml
+        state: absent
+        namespace: default
+    - name: Create a deployment for Frontend Service
+      kubernetes.core.k8s:
+        src: /home/bhavil/Desktop/Employee_Management_System_SPEFinalProject/k8s/frontend.yaml
+        state: present
+        apply: true
+        namespace: default
 
     # - name: Delete any existing deployment of Frontend HPA Deployment
     #   kubernetes.core.k8s:

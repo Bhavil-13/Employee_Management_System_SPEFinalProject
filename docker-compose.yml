@@ -53,7 +53,7 @@ services:
       MONGO_URI: mongodb://mongo:27017/mydatabase
     depends_on:
       - mongodb
-      # - elasticsearch  # Add Elasticsearch dependency for logging/search integration if needed
+      - elasticsearch  # Add Elasticsearch dependency for logging/search integration if needed
 
   frontend:
     build: ./frontend
@@ -73,46 +73,46 @@ services:
     volumes:
       - mongo-data:/data/db  
 
-  # elasticsearch:
-  #   image: elasticsearch:8.10.2
-  #   container_name: elasticsearch
-  #   environment:
-  #     - discovery.type=single-node
-  #     - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
-  #     - xpack.security.enabled=false
-  #     # - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
-  #   ports:
-  #     - "9200:9200"  # Elasticsearch HTTP
-  #     - "9300:9300"  # Elasticsearch transport
-  #   networks:
-  #     - mern_network
-  #   volumes:
-  #     - es_data:/usr/share/elasticsearch/data
+  elasticsearch:
+    image: elasticsearch:8.10.2
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - xpack.security.enabled=false
+      # - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+    ports:
+      - "9200:9200"  # Elasticsearch HTTP
+      - "9300:9300"  # Elasticsearch transport
+    networks:
+      - mern_network
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
 
-  # logstash:
-  #   image: logstash:8.10.2
-  #   container_name: logstash
-  #   ports:
-  #     - "5044:5044"
-  #   networks:
-  #     - mern_network
-  #   volumes:
-  #     - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
-  #   depends_on:
-  #     - elasticsearch
+  logstash:
+    image: logstash:8.10.2
+    container_name: logstash
+    ports:
+      - "5044:5044"
+    networks:
+      - mern_network
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    depends_on:
+      - elasticsearch
 
-  # kibana:
-  #   image: kibana:8.10.2
-  #   container_name: kibana
-  #   environment:
-  #   - XPACK_SECURITY_ENABLED=false
-  #   - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-  #   ports:
-  #     - "5601:5601"
-  #   networks:
-  #     - mern_network
-  #   depends_on:
-  #     - elasticsearch
+  kibana:
+    image: kibana:8.10.2
+    container_name: kibana
+    environment:
+    - XPACK_SECURITY_ENABLED=false
+    - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    networks:
+      - mern_network
+    depends_on:
+      - elasticsearch
   
   # filebeat:
   #   image: docker.elastic.co/beats/filebeat:8.10.2
